@@ -6,6 +6,8 @@ public class CameraCollider : MonoBehaviour
 {
     [SerializeField]
     private Canvas _canvas;
+    [SerializeField]
+    private LineRenderer _line;
 
     private void OnEnable()
     {
@@ -17,6 +19,7 @@ public class CameraCollider : MonoBehaviour
         if (_canvas.isActiveAndEnabled)
         {
             _canvas.gameObject.transform.rotation = Quaternion.LookRotation(_canvas.worldCamera.transform.forward);
+            _line.SetPosition(0, _canvas.transform.position);
         }
     }
 

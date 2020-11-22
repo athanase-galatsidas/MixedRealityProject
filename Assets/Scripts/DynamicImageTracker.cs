@@ -27,9 +27,9 @@ public class DynamicImageTracker : MonoBehaviour
         m_image_tracker.trackedImagesChanged -= OnTrackedImageChanged;
     }
 
-    void OnTrackedImageChanged(ARTrackedImagesChangedEventArgs args_)
+    void OnTrackedImageChanged(ARTrackedImagesChangedEventArgs args)
     {
-        foreach (ARTrackedImage i in args_.added)
+        foreach (ARTrackedImage i in args.added)
         {
             if (i.referenceImage.name == "TestObj")
             {
@@ -41,7 +41,7 @@ public class DynamicImageTracker : MonoBehaviour
             }
         }
 
-        foreach (ARTrackedImage i in args_.updated)
+        foreach (ARTrackedImage i in args.updated)
         {
             int id = i.GetInstanceID();
             if (m_spawned_worlds.ContainsKey(id))
@@ -51,7 +51,7 @@ public class DynamicImageTracker : MonoBehaviour
             }
         }
 
-        foreach (ARTrackedImage i in args_.removed)
+        foreach (ARTrackedImage i in args.removed)
         {
             int id = i.GetInstanceID();
             if (m_spawned_worlds.ContainsKey(id))
