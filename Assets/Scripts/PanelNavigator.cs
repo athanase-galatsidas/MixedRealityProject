@@ -5,29 +5,30 @@ using UnityEngine;
 public class PanelNavigator : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] panels;
+    private GameObject[] _panels;
     [SerializeField]
-    private GameObject buttonPannel;
-    private bool isVisible;
+    private GameObject _buttonPannel, _priceTag;
+    private bool _isVisible;
 
     public void GotoPanel(int index)
     {
-        foreach (GameObject panel in panels)
+        foreach (GameObject panel in _panels)
         {
             panel.SetActive(false);
         }
-        panels[index].SetActive(true);
+        _panels[index].SetActive(true);
     }
 
     public void CloseAll()
     {
-        foreach (GameObject panel in panels)
+        foreach (GameObject panel in _panels)
         {
             panel.SetActive(false);
         }
 
-        buttonPannel.SetActive(false);
-        isVisible = false;
+        _buttonPannel.SetActive(false);
+        _priceTag.SetActive(true);
+        _isVisible = false;
     }
 
     private void OnMouseDown()
@@ -37,10 +38,11 @@ public class PanelNavigator : MonoBehaviour
 
     public void OpenMenu()
     {
-        if (!isVisible)
+        if (!_isVisible)
         {
-            isVisible = true;
-            buttonPannel.SetActive(true);
+            _isVisible = true;
+            _buttonPannel.SetActive(true);
+            _priceTag.SetActive(false);
             GotoPanel(0);
         }
     }
