@@ -23,15 +23,5 @@ MonoBehaviour:
       m_GuidHigh: 8684923076946551801
     m_Size: {x: 0.4, y: 0.4}
     m_SpecifySize: 1
-    m_Name: TestObj
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
-      m_GuidLow: 5577230144886253116
-      m_GuidHigh: 4489604899683469243
-    m_SerializedTextureGuid:
-      m_GuidLow: 5157895247842833102
-      m_GuidHigh: 4735776533244058681
-    m_Size: {x: 0.3, y: 0.3}
-    m_SpecifySize: 1
-    m_Name: TestObj2
+    m_Name: ObjBanana
     m_Texture: {fileID: 0}

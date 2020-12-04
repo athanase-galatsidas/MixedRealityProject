@@ -6,8 +6,8 @@ using UnityEngine.XR.ARFoundation;
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class DynamicImageTracker : MonoBehaviour
 {
-    public GameObject world1;
-    public GameObject world2;
+    [SerializeField]
+    private GameObject[] _worlds;
 
     ARTrackedImageManager m_image_tracker;
     Dictionary<int, GameObject> m_spawned_worlds = new Dictionary<int, GameObject>();
@@ -31,14 +31,22 @@ public class DynamicImageTracker : MonoBehaviour
     {
         foreach (ARTrackedImage i in args.added)
         {
-            if (i.referenceImage.name == "TestObj")
+            for (int j = 0; j < _worlds.Length; j++)
+            {
+                if (i.referenceImage.name == _worlds[j].name)
+                {
+                    m_spawned_worlds.Add(i.GetInstanceID(), Instantiate(_worlds[j], i.transform.position, Quaternion.identity));
+                }
+            }
+
+            /*if (i.referenceImage.name == "TestObj")
             {
                 m_spawned_worlds.Add(i.GetInstanceID(), Instantiate(world1, i.transform.position, i.transform.rotation));
             }
             else if (i.referenceImage.name == "TestObj2")
             {
                 m_spawned_worlds.Add(i.GetInstanceID(), Instantiate(world2, i.transform.position, i.transform.rotation));
-            }
+            }*/
         }
 
         foreach (ARTrackedImage i in args.updated)

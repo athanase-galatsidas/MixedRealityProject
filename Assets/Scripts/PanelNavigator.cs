@@ -14,9 +14,20 @@ public class PanelNavigator : MonoBehaviour
     {
         foreach (GameObject panel in _panels)
         {
-            panel.SetActive(false);
+            if (panel.activeSelf)
+                StartCoroutine(DelayedDisable(panel));
+            else
+                panel.SetActive(false);
         }
         _panels[index].SetActive(true);
+        _panels[index].GetComponent<Animator>().Play("AnimPanelSlideIn");
+    }
+
+    private IEnumerator DelayedDisable(GameObject panel)
+    {
+        panel.GetComponent<Animator>().Play("AnimPanelSlideOut");
+        yield return new WaitForSeconds(.2f);
+        panel.SetActive(false);
     }
 
     public void CloseAll()
