@@ -9,6 +9,7 @@ public class PanelNavigator : MonoBehaviour
     [SerializeField]
     private GameObject _buttonPannel, _priceTag;
     private bool _isVisible;
+    private int _panelIndex;
 
     public void GotoPanel(int index)
     {
