@@ -9,19 +9,24 @@ public class PanelNavigator : MonoBehaviour
     [SerializeField]
     private GameObject _buttonPannel, _priceTag;
     private bool _isVisible;
-    private int _panelIndex;
+    private int _panelIndex = -1;
 
     public void GotoPanel(int index)
     {
-        foreach (GameObject panel in _panels)
+        if (_panelIndex != index)
         {
-            if (panel.activeSelf)
-                StartCoroutine(DelayedDisable(panel));
-            else
-                panel.SetActive(false);
+            foreach (GameObject panel in _panels)
+            {
+                if (panel.activeSelf)
+                    StartCoroutine(DelayedDisable(panel));
+                else
+                    panel.SetActive(false);
+            }
+            _panels[index].SetActive(true);
+            _panels[index].GetComponent<Animator>().Play("AnimPanelSlideIn");
+
+            _panelIndex = index;
         }
-        _panels[index].SetActive(true);
-        _panels[index].GetComponent<Animator>().Play("AnimPanelSlideIn");
     }
 
     private IEnumerator DelayedDisable(GameObject panel)
@@ -41,6 +46,7 @@ public class PanelNavigator : MonoBehaviour
         _buttonPannel.SetActive(false);
         _priceTag.SetActive(true);
         _isVisible = false;
+        _panelIndex = -1;
     }
 
     private void OnMouseDown()

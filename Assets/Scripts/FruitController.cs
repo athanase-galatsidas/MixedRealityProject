@@ -11,15 +11,20 @@ public class FruitController : MonoBehaviour
     [SerializeField]
     private Slider _sliderFreshness, _sliderSize;
     [SerializeField]
-    private TextMeshProUGUI _tmpPrice, _tmpPriceValue, _tmpWeightValue;
+    private TextMeshProUGUI _tmpWeightValue;
     [SerializeField]
-    private GameObject _fruitObject;
+    private TextMeshProUGUI[] _tmpPriceTags;
+    [SerializeField]
+    private GameObject _fruitObject, _btnAddList;
     private Renderer _fruitRenderer;
 
     private Vector3 _baseScale;
+    private float _priceCalculated;
 
     [SerializeField]
     private float _basePrice, _baseWeight;
+    [SerializeField]
+    private string _objName;
 
     private void Awake()
     {
@@ -54,9 +59,19 @@ public class FruitController : MonoBehaviour
 
     public void UpdateValues()
     {
-        float price = _basePrice * (.5f + _sliderFreshness.value) * (.5f + _sliderSize.value);
-        _tmpPrice.text = $"€ {price.ToString("0.00")}";
-        _tmpPriceValue.text = $"€ {price.ToString("0.00")}";
+        _priceCalculated = _basePrice * (.5f + _sliderFreshness.value) * (.5f + _sliderSize.value);
+
+        foreach (TextMeshProUGUI tmp in _tmpPriceTags)
+        {
+            tmp.text = $"€ {_priceCalculated.ToString("0.00")}";
+        }
+
         _tmpWeightValue.text = $"{((.5f + _sliderSize.value) * _baseWeight).ToString("0.00")} kg";
+    }
+
+    public void AddToList()
+    {
+        _btnAddList.SetActive(false);
+        FindObjectOfType<ShoppingCart>().AddItem(_objName, _priceCalculated);
     }
 }
