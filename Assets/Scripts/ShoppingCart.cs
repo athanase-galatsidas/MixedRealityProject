@@ -9,6 +9,8 @@ public class ShoppingCart : MonoBehaviour
     private ShoppingCartItem _item;
     [SerializeField]
     private Animator _animPanel;
+    [SerializeField]
+    private GameObject _container;
 
     private bool _open;
 
@@ -17,7 +19,7 @@ public class ShoppingCart : MonoBehaviour
         if (!_animPanel.gameObject.activeSelf)
             _animPanel.gameObject.SetActive(true);
 
-        ShoppingCartItem shopItem = Instantiate(_item, _animPanel.transform);
+        ShoppingCartItem shopItem = Instantiate(_item, _container.transform);
         shopItem.TmpName.text = name;
         shopItem.TmpPrice.text = $"€ {price.ToString("0.00")}";
     }
