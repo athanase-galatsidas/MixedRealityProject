@@ -14,6 +14,9 @@ public class ShoppingCart : MonoBehaviour
 
     public void AddItem(string name, float price)
     {
+        if (!_animPanel.gameObject.activeSelf)
+            _animPanel.gameObject.SetActive(true);
+
         ShoppingCartItem shopItem = Instantiate(_item, _animPanel.transform);
         shopItem.TmpName.text = name;
         shopItem.TmpPrice.text = $"€ {price.ToString("0.00")}";

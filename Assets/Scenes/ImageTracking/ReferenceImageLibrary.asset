@@ -25,3 +25,23 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: ObjBanana
     m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5457679866357095325
+      m_GuidHigh: 12232907008654723263
+    m_SerializedTextureGuid:
+      m_GuidLow: 13575229432841003014
+      m_GuidHigh: 14483360070505843466
+    m_Size: {x: 0.4, y: 0.4}
+    m_SpecifySize: 1
+    m_Name: ObjLemon
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5410460301809518183
+      m_GuidHigh: 16825440086879922324
+    m_SerializedTextureGuid:
+      m_GuidLow: 1410926075164110505
+      m_GuidHigh: 12128502675274334043
+    m_Size: {x: 0.4, y: 0.4}
+    m_SpecifySize: 1
+    m_Name: ObjOrange
+    m_Texture: {fileID: 0}
